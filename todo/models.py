@@ -3,6 +3,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from model_utils import Choices
 
+class TaskManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().order_by('date_create')
+
 
 class Tasks(models.Model):
     ''' this is base class from tasks'''

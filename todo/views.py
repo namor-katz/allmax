@@ -31,10 +31,19 @@ def api_tasks(request):
 
 
 
-@api_view(['GET'])
-def api_task_detail(request,  pk):
+@api_view(['GET', 'PUT', 'PATH', 'DELETE'])
+def api_task_detail(request, pk):
     ''' return detail tasks'''
+    task = Tasks.objects.get(pk=pk)
     if request.method == 'GET':
-        task = Tasks.objects.get(pk=pk)
         serializer = TasksSerializer(task)
         return Response(serializer.data)
+    elif request.method == "PUT" or request.method == "PATCH":
+        serializer = TasksSerializer(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        task.delete()
+        return Response(status=status.HTTP_201_NO_CONTENT)
