@@ -6,7 +6,16 @@
 
 from rest_framework import serializers
 from .models import Tasks
+#from api.models import User #,  UserProfile
+'''
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'email', 'first_name', 'last_name', 'password', 'profile')
+        extra_kwargs = {'password': {'write_only': True}}
+        
 
+'''
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tasks
@@ -14,4 +23,3 @@ class TasksSerializer(serializers.ModelSerializer):
 
     def create_task(self):
         pass
-
