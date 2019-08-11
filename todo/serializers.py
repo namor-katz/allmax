@@ -10,7 +10,8 @@ from .models import Tasks
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tasks
-        fields = ('title',  'target_user', 'status', 'date_create')
+        fields = ('title',  'target_user', 'status', 'date_create', 'prioritet')
 
     def create_task(self):
         pass
+
