@@ -1,0 +1,11 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+{% for task in tasks %}
+<div class="b">
+  <h2>{{ task.title }}</h2>
+  <p>{{ task.date_create }}</p>
+  {# <p><a href="{% url 'by_task' task.target_user.pk %}">{{ task.title }}</a></p> #}
+</div>
+{% endfor %}
+{% endblock %}

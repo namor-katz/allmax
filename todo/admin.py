@@ -4,7 +4,7 @@ from .models import Tasks
 # Register your models here.
 
 class TasksAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date_create')
-    search_fields = ('name', 'target_user')
+    list_display = ('title', 'date_create',  'target_user')
+    search_fields = ('title', 'target_user')
 
 admin.site.register(Tasks, TasksAdmin)
